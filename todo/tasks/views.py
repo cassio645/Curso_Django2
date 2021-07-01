@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib import messages
 
 from .models import Task
 from .forms import TaskForm
@@ -34,13 +35,23 @@ def editTask(request, id):
 
     if(request.method == 'POST'):
         form = TaskForm(request.POST, instance=task)
-        if form.is_valid():
+        if (form.is_valid()):
             task.save()
+            messages.success(request, 'As alterações foram salvas com sucesso.')
             return redirect('/')
         else:
             return render(request, 'tasks/editTask.html',{'form': form, 'task': task})
     else:
         return render(request, 'tasks/editTask.html',{'form': form, 'task': task})
+
+
+def deleteTask(request, id):
+    task = get_object_or_404(Task, pk=id)
+    task.delete()
+
+    messages.warning(request, 'Tarefa deletada com sucesso.')
+
+    return redirect('/')
 
 
 def helloworld(request):
@@ -49,3 +60,4 @@ def helloworld(request):
 
 def yourname(request, name):
     return render(request, 'tasks/yourname.html', {'name': name})
+
