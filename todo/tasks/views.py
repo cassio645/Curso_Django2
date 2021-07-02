@@ -24,7 +24,7 @@ def taskList(request):
     else:
         tasks_list = Task.objects.all().order_by('-created_at').filter(user=request.user)
 
-        paginator = Paginator(tasks_list, 3)
+        paginator = Paginator(tasks_list, 5)
         page = request.GET.get('page')
         tasks = paginator.get_page(page)
 
