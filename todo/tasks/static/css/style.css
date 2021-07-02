@@ -64,6 +64,18 @@
     display: inline-block;
 }
 
+/* filter */
+.filter-div {
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+#filter {
+    display: inline-block;
+    width: 200px;
+    margin-left: 5px;
+}
+
 /* Lista de tarefas */
 
 .list-div {
