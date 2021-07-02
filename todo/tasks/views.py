@@ -71,6 +71,20 @@ def deleteTask(request, id):
     return redirect('/')
 
 
+@login_required
+def changeStatus(request, id):
+    task = get_object_or_404(Task, pk=id)
+
+    if(task.done == 'Fazendo'):
+        task.done = 'doing'
+    else:
+        task.done = 'Fazendo'
+
+    task.save()
+
+    return redirect('/')
+
+
 def helloworld(request):
     return HttpResponse("Hello, world.")
 
