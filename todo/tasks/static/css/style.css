@@ -2,6 +2,10 @@
     padding: 0;
 }
 
+.container-fluid .row {
+    margin: 0;
+}
+
 /* Navbar */
 
 .navbar  {
@@ -136,6 +140,7 @@ ul.messages li {
 }
 
 /* login */
-.auth-card{
-    margin.bottom: 30px;
+
+.auth-card {
+    margin-bottom: 30px;
 }
