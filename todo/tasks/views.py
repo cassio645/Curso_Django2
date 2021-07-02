@@ -13,6 +13,10 @@ def taskList(request):
     search = request.GET.get('search')
     filter = request.GET.get('filter')
 
+    taskTotal = Task.objects.filter(user=request.user).count()
+    tasksDone = Task.objects.filter(done='done', user=request.user).count()
+    tasksDoing = Task.objects.filter(done='doing', user=request.user).count()
+
     if search:
         tasks = Task.objects.filter(title__icontains=search, user=request.user)
     elif filter:
@@ -24,7 +28,8 @@ def taskList(request):
         page = request.GET.get('page')
         tasks = paginator.get_page(page)
 
-    return render(request, 'tasks/list.html', {'tasks': tasks})
+    return render(request, 'tasks/list.html', 
+        {'tasks':tasks, 'taskstotal': taskTotal, 'tasksdone': tasksDone, 'tasksdoing': tasksDoing })
 
 
 @login_required
@@ -39,7 +44,7 @@ def newTask(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
-            task.done = 'Fazendo'
+            task.done = 'doing'
             task.user = request.user
             task.save()
             return redirect('/')
@@ -79,10 +84,10 @@ def deleteTask(request, id):
 def changeStatus(request, id):
     task = get_object_or_404(Task, pk=id)
 
-    if(task.done == 'Fazendo'):
-        task.done = 'doing'
+    if(task.done == 'doing'):
+        task.done = 'done'
     else:
-        task.done = 'Fazendo'
+        task.done = 'doing'
 
     task.save()
 

@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 
 class Task(models.Model):
-    STATUS = (('doing', 'Fazendo'), ('done', 'Feito'))
+    STATUS = (('doing', 'doing'), ('done', 'done'))
 
     title = models.CharField(max_length=255)
     description = models.TextField()

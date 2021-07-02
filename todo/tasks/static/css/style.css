@@ -26,6 +26,51 @@
     letter-spacing: 1px;
 }
 
+/* dashboard */
+.dashboard {
+    padding: 0;
+    width: 100%;
+    display: block;
+}
+
+.dashboard h4 {
+    font-size: 20px;
+}
+
+.dashboard span {
+    font-size: 30px;
+    display: block;
+    width: 100%;
+}
+
+.dashboard-box {
+    float: left;
+    background-color: #DFDFDF;
+    color: #FFF;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 130px;
+    width: 30%;
+    text-align: center;
+}
+
+.dashboard-box:nth-child(2) {
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+}
+
+#dashboard-lastdays {
+    background-color: #4173df;
+}
+
+#dashboard-done {
+    background-color: #378f4d;
+}
+
+#dashboard-doing {
+    background-color: #a5334c;
+}
+
 /* Botão de adicionar */
 
 #add-link{
